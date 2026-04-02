@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
+/* ============================================
+   FutureScan Design System
+   Palette: Deep Space Blue / Neural Silver / Electric Cyan
+   Aesthetic: Cinematic, High-Tech, Trustworthy
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core palette */
+  --deep-space: #0a0e27;
+  --deep-space-light: #111638;
+  --deep-space-lighter: #1a1f4a;
+  --neural-silver: #a8b5c8;
+  --neural-silver-light: #c8d3e3;
+  --electric-cyan: #00e5ff;
+  --electric-cyan-dim: #00b8cc;
+  --electric-cyan-glow: rgba(0, 229, 255, 0.15);
+  --white: #f0f4f8;
+  --white-pure: #ffffff;
+
+  /* Semantic */
+  --background: var(--deep-space);
+  --foreground: var(--white);
+  --muted: var(--neural-silver);
+  --accent: var(--electric-cyan);
+  --card-bg: rgba(17, 22, 56, 0.6);
+  --card-border: rgba(168, 181, 200, 0.1);
+
+  /* Scan animation */
+  --scan-speed: 3s;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-deep-space: var(--deep-space);
+  --color-deep-space-light: var(--deep-space-light);
+  --color-deep-space-lighter: var(--deep-space-lighter);
+  --color-neural-silver: var(--neural-silver);
+  --color-neural-silver-light: var(--neural-silver-light);
+  --color-electric-cyan: var(--electric-cyan);
+  --color-electric-cyan-dim: var(--electric-cyan-dim);
+  --color-accent: var(--electric-cyan);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   Base styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--deep-space);
+  color: var(--white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(0, 229, 255, 0.3);
+  color: var(--white-pure);
+}
+
+/* ============================================
+   Glassmorphism utilities
+   ============================================ */
+
+.glass {
+  background: rgba(17, 22, 56, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(168, 181, 200, 0.1);
+}
+
+.glass-strong {
+  background: rgba(17, 22, 56, 0.85);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(168, 181, 200, 0.15);
+}
+
+/* ============================================
+   Glow effects
+   ============================================ */
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15),
+              0 0 60px rgba(0, 229, 255, 0.05);
+}
+
+.glow-cyan-strong {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.3),
+              0 0 80px rgba(0, 229, 255, 0.1),
+              inset 0 0 30px rgba(0, 229, 255, 0.05);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.5),
+               0 0 40px rgba(0, 229, 255, 0.2);
+}
+
+/* ============================================
+   Scan line animation
+   ============================================ */
+
+@keyframes scanLine {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-scan-line {
+  animation: scanLine var(--scan-speed) ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 229, 255, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Grid background pattern
+   ============================================ */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(168, 181, 200, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 181, 200, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ============================================
+   Custom scrollbar
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 181, 200, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.3);
 }

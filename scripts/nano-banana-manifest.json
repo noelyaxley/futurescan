@@ -1,0 +1,74 @@
+{
+  "project": "FutureScan",
+  "brand_palette": {
+    "deep_space_blue": "#0a0e27",
+    "neural_silver": "#a8b5c8",
+    "electric_cyan": "#00e5ff"
+  },
+  "model": "gemini-3.1-flash-image-preview",
+  "future_scan_assets": {
+    "hero_background": {
+      "asset_key": "hero_background_cinematic",
+      "website_section": "Hero (#hero-video-slot)",
+      "output_path": "public/assets/ai/hero-bg.png",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "description": "Full-viewport cinematic hero establishing the brand as premium medical-tech. Must work as a dark, atmospheric background behind white/cyan text.",
+      "nano_banana_prompt": "A state-of-the-art MRI scanner in a futuristic medical suite, its bore glowing with a luminous electric cyan light that pulses outward in concentric rings. The machine is sleek, monolithic, finished in brushed neural silver metal with deep navy-black surroundings. The room is minimal and immaculate — polished dark concrete floor reflecting the cyan glow, no clutter, no people. Volumetric light spills from the scanner bore, casting long atmospheric rays through a faint medical-grade mist. The walls are deep space blue, nearly black, with subtle recessed LED strips in cyan along the baseboards. A single patient bed extends from the scanner, its surface a clean matte white. Captured with an ARRI Alexa 65, Cooke S7/i 25mm anamorphic lens at T2.8, wide establishing shot from a low angle emphasizing the monumental scale of the machine. Dramatic chiaroscuro lighting — the scanner is the sole light source, casting long shadows. Color graded with crushed blacks, deep navy shadows, and electric cyan highlights. The atmosphere evokes a Denis Villeneuve science fiction film. WIRED magazine cover story aesthetic. NEVER include any text, labels, or watermarks."
+    },
+    "scan_brain_visualization": {
+      "asset_key": "scan_brain_ai_overlay",
+      "website_section": "AI Scan Experience (#scan-image-slot)",
+      "output_path": "public/assets/ai/scan-brain.png",
+      "aspect_ratio": "1:1",
+      "resolution": "2K",
+      "description": "Brain MRI cross-section with AI neural network overlay — the centrepiece of the interactive scan component. Must look clinical yet futuristic.",
+      "nano_banana_prompt": "A sagittal cross-section of a human brain MRI scan rendered as a luminous medical image against a pure black background. The brain tissue appears in soft gradients of deep navy blue and silver-grey, with anatomical structures clearly delineated. Overlaid on the brain is an intricate network of glowing electric cyan lines and nodes — a neural network visualization that traces the major anatomical pathways, with bright cyan dots pulsing at key intersection points representing AI detection markers. The neural overlay appears to flow and branch like a living data stream, with thin luminous filaments connecting regions of interest. Fine crosshair gridlines in very faint cyan subdivide the image into quadrants. The overall effect is a fusion of clinical medical imaging and advanced computational analysis. Captured as a medical-grade diagnostic image composited with holographic data visualization. Shot on a Sony A1 in macro mode, clinical precision, tack-sharp detail on every neural fold and sulcus. The cyan glow casts subtle light onto surrounding structures. Reminiscent of a Nature Medicine journal cover illustration. NEVER include any text, labels, or watermarks."
+    },
+    "og_social_card": {
+      "asset_key": "og_social_sharing_card",
+      "website_section": "Meta / Open Graph (public/assets/og-image.png)",
+      "output_path": "public/assets/og-image.png",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "description": "Social sharing card for link previews. Must include the brand name 'FutureScan' as text and communicate AI + MRI + premium in a single glance.",
+      "nano_banana_prompt": "A cinematic wide composition on a deep space blue background transitioning to black at the edges. In the centre-left, a sleek futuristic MRI scanner rendered in brushed neural silver metal, its bore glowing with electric cyan light. Holographic data streams of thin cyan lines flow outward from the scanner to the right side of the frame, forming an abstract pattern suggesting anatomical analysis. The text \"FutureScan\" appears in bold, clean, wide-tracked white sans-serif letterforms positioned in the upper-right quadrant, large and prominent. Below the brand name in smaller text: \"AI-Powered MRI\" in electric cyan. The overall palette is deep navy black, silver-grey metallic surfaces, and glowing electric cyan accents. Soft volumetric light emanates from the scanner, atmospheric medical mist in the background. Shot as a premium commercial graphic, studio-lit with a single key light from camera-right. Clean, uncluttered, with generous negative space. WIRED magazine feature spread aesthetic."
+    },
+    "clinic_environment": {
+      "asset_key": "futuristic_clinic_wide",
+      "website_section": "Trust & Safety section",
+      "output_path": "public/assets/ai/clinic-environment.png",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "description": "Wide shot of a calming, premium, futuristic MRI clinic reception or scanning suite. Conveys trust, cleanliness, advanced technology, and approachability.",
+      "nano_banana_prompt": "A wide interior shot of a futuristic medical imaging clinic reception area, designed with minimalist Japanese-Scandinavian influence. Clean lines, warm timber accents against cool surfaces. The space features a long curved reception desk in matte white with an embedded strip of glowing electric cyan LED running along its edge. Behind the desk, a feature wall of dark navy-blue acoustic panelling with subtle backlit grooves. The floor is polished pale concrete, reflecting the soft ambient lighting. Comfortable modern waiting chairs in warm grey fabric line one side. Large floor-to-ceiling windows on the left reveal a soft, overcast Sydney harbour view, diffusing natural daylight into the space. A corridor in the background leads to scanning rooms, marked by a soft cyan glow from within. The atmosphere is calm, professional, and reassuringly high-tech — not cold or sterile, but warm and inviting. Captured with a Canon EOS R5, 24mm f/2.8 lens, wide establishing shot at eye level, natural colour temperature with cool cyan accent lighting. Architectural Digest interior feature aesthetic. NEVER include any text, labels, or watermarks. NEVER include any people."
+    },
+    "ai_report_holographic": {
+      "asset_key": "ai_report_holographic_display",
+      "website_section": "How It Works - Step 3 (AI Report) and CTA section background atmosphere",
+      "output_path": "public/assets/ai/ai-report.png",
+      "aspect_ratio": "16:9",
+      "resolution": "2K",
+      "description": "A holographic medical report floating in space — representing the AI-generated report a patient receives. Futuristic data visualization aesthetic.",
+      "nano_banana_prompt": "A floating holographic medical diagnostic report suspended in a dark void, rendered as a translucent glassmorphism UI panel with a faint frosted-glass appearance. The panel displays an abstract human body outline in electric cyan wireframe on the left third, with glowing data points marking organ regions — each point connected by thin luminous lines to data readouts on the right side showing status indicators in green and cyan. The panel has rounded corners, a subtle cyan border glow, and appears to be made of translucent light rather than solid material. Below the body outline, small progress bars and circular health score indicators glow softly. The entire hologram floats at a slight three-quarter angle, casting a faint cyan light pool on an invisible surface below. The background is pure deep space blue fading to black, with distant out-of-focus data particles drifting like stars. Captured as a concept visualization, clean vector-meets-hologram style. Reminiscent of sci-fi film UI design by Ash Thorp or Territory Studio. NEVER include any readable text smaller than headline size. NEVER include watermarks."
+    },
+    "mri_scanner_detail": {
+      "asset_key": "mri_bore_detail_glow",
+      "website_section": "How It Works - Step 2 (Get Scanned) and Problem section atmosphere",
+      "output_path": "public/assets/ai/mri-detail.png",
+      "aspect_ratio": "4:3",
+      "resolution": "2K",
+      "description": "Close-up detail shot of an MRI scanner bore glowing with cyan light. Atmospheric, abstract, can be used as background texture across multiple sections.",
+      "nano_banana_prompt": "An extreme close-up of the bore of a modern MRI scanner, shot from inside looking outward through the circular opening. The bore interior is lined with smooth neural silver metal panels arranged in concentric rings, each ring edge illuminated by a thin strip of electric cyan LED light creating a hypnotic tunnel-like pattern receding into the frame. The outermost ring is sharp and in focus, with successive rings falling into soft bokeh, creating a powerful depth-of-field tunnel effect. A faint volumetric mist diffuses the cyan light, making each ring glow with a soft halo. The colour palette is strictly limited: deep navy-black shadows, brushed silver metallic surfaces, and glowing electric cyan accents. The image feels both clinical and transcendent — a portal into advanced diagnostic technology. Captured with a Sony Venice 2 cinema camera, Zeiss Supreme Prime 35mm lens at T1.5, extreme shallow depth of field. Lit entirely by the machine's own cyan LED arrays. Reminiscent of a Christopher Nolan interstellar sequence. NEVER include any text, labels, or watermarks."
+    },
+    "favicon_logo_mark": {
+      "asset_key": "favicon_logo_f",
+      "website_section": "Site favicon and brand mark",
+      "output_path": "public/assets/icons/favicon-source.png",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "description": "A bold geometric 'F' lettermark for use as favicon and app icon. Must read clearly at 16x16px.",
+      "nano_banana_prompt": "A bold geometric letter \"F\" centred on a solid electric cyan (#00e5ff) square background with slightly rounded corners. The letter is rendered in deep navy-black (#0a0e27), using a clean bold sans-serif construction with sharp right angles and uniform stroke width. The design is minimal, flat, and icon-ready — no gradients, no shadows, no 3D effects. The \"F\" fills approximately 60% of the frame, well-balanced with even padding on all sides. The overall style is a modern tech logo mark, reminiscent of Figma or Framer brand icons — clean, geometric, instantly recognisable at small sizes. MUST contain only the letter F and the background, nothing else."
+    }
+  }
+}
