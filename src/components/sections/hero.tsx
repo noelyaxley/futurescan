@@ -25,15 +25,28 @@ export function Hero() {
         style={{ animationDelay: "3s" }}
       />
 
-      {/* Hero background image */}
+      {/* Hero background — video with image fallback */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/ai/hero-bg.png"
-          alt=""
-          fill
-          className="object-cover opacity-30"
-          priority
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/assets/ai/hero-bg.png"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        >
+          <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Fallback image for browsers that don't autoplay video */}
+        <noscript>
+          <Image
+            src="/assets/ai/hero-bg.png"
+            alt=""
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
+        </noscript>
         <div className="absolute inset-0 bg-deep-space/40" />
       </div>
 

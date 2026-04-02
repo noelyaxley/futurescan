@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const trustItems = [
@@ -48,6 +49,15 @@ const trustItems = [
 export function Trust() {
   return (
     <section id="trust" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Clinic environment background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/assets/ai/clinic-environment.png"
+          alt=""
+          fill
+          className="object-cover opacity-[0.07]"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-deep-space via-deep-space-light/20 to-deep-space" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">

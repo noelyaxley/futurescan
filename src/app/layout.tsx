@@ -89,7 +89,21 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
-        {/* HubSpot Tracking Code - replace ID with your portal ID */}
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`,
+              }}
+            />
+          </>
+        )}
+        {/* HubSpot Tracking Code */}
         {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID && (
           <script
             id="hs-script-loader"
