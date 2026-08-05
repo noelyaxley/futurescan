@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { clinicContact } from "@/lib/contact";
+
 const trustItems = [
   {
     icon: (
@@ -46,6 +48,15 @@ const trustItems = [
   },
 ];
 
+/* A detail we do not have yet, drawn as an unfilled line rather than a guess. */
+function PendingDetail() {
+  return (
+    <span className="block border-b border-dashed border-neural-silver/40 pb-1.5 text-sm text-neural-silver/70">
+      To be published before launch
+    </span>
+  );
+}
+
 export function Trust() {
   return (
     <section id="trust" className="relative py-24 sm:py-32 overflow-hidden">
@@ -74,7 +85,9 @@ export function Trust() {
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold font-[family-name:var(--font-space-grotesk)]">
             Medical accuracy.{" "}
-            <span className="text-neural-silver/40">No compromises.</span>
+            <span className="bg-gradient-to-r from-electric-cyan to-electric-cyan-dim bg-clip-text text-transparent">
+              No compromises.
+            </span>
           </h2>
         </motion.div>
 
@@ -102,43 +115,135 @@ export function Trust() {
           ))}
         </div>
 
-        {/* AI vendor logos placeholder */}
+        {/* Accountability: what happens when a scan is ambiguous, and who
+            answers for it. Real-world detail comes from src/lib/contact.ts —
+            the comment at the top of that file lists everything still needed. */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-16 glass rounded-2xl p-8 sm:p-10 grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14"
         >
-          <p className="text-sm text-neural-silver/40 mb-8">
-            Powered by TGA-approved AI diagnostic partners
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-30" id="ai-vendor-logos">
-            {/* Replace with actual partner logos */}
-            {["SNAC iQ-Solutions", "Aidoc", "RapidAI", "MVision AI"].map(
-              (vendor) => (
-                <div
-                  key={vendor}
-                  className="px-6 py-3 border border-neural-silver/10 rounded-lg text-sm text-neural-silver font-medium"
-                >
-                  {vendor}
-                </div>
-              )
+          <div className="lg:col-span-3">
+            <h3 className="text-xl sm:text-2xl font-bold font-[family-name:var(--font-space-grotesk)]">
+              If your scan finds something ambiguous
+            </h3>
+            <div className="mt-5 space-y-4 text-neural-silver leading-relaxed max-w-[65ch]">
+              <p>
+                Screening people who feel well finds things. Most are harmless —
+                cysts, small nodules, anatomical variation that has been there
+                your whole life and will never trouble you. A smaller number are
+                genuinely uncertain on a single scan, and the honest answer at
+                that point is that nobody can tell you yet.
+              </p>
+              <p>
+                That uncertainty is a real cost of screening, not a footnote to
+                it. An ambiguous finding can lead to a repeat scan after an
+                interval, a different kind of imaging, or a specialist opinion —
+                and sometimes to months of worry about something that turns out
+                to be nothing. We would rather you weighed that before you book
+                than discovered it afterwards.
+              </p>
+              <p>
+                What we will not do is leave you to interpret it alone. Every
+                scan is reviewed by a qualified Australian radiologist (FRANZCR)
+                before your report reaches you. FutureScan does not diagnose and
+                does not treat — what happens next is a decision for you and
+                your GP.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-2 lg:border-l lg:border-neural-silver/10 lg:pl-14">
+            <h3 className="text-xl sm:text-2xl font-bold font-[family-name:var(--font-space-grotesk)]">
+              Who answers for it
+            </h3>
+
+            {clinicContact.medicalDirector?.photo && (
+              <div className="mt-6 relative h-20 w-20 overflow-hidden rounded-full border border-neural-silver/20">
+                <Image
+                  src={clinicContact.medicalDirector.photo}
+                  alt={`${clinicContact.medicalDirector.name}, medical director of FutureScan`}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </div>
             )}
+
+            <dl className="mt-6 space-y-6">
+              <div>
+                <dt className="text-sm font-medium text-electric-cyan">
+                  Medical director
+                </dt>
+                <dd className="mt-1.5">
+                  {clinicContact.medicalDirector ? (
+                    <>
+                      <span className="block text-white font-medium">
+                        {clinicContact.medicalDirector.name}
+                      </span>
+                      <span className="block text-sm text-neural-silver/80">
+                        {clinicContact.medicalDirector.credential} · AHPRA{" "}
+                        {clinicContact.medicalDirector.ahpraNumber}
+                      </span>
+                    </>
+                  ) : (
+                    <PendingDetail />
+                  )}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-sm font-medium text-electric-cyan">Clinic</dt>
+                <dd className="mt-1.5">
+                  {clinicContact.clinic ? (
+                    <address className="not-italic text-neural-silver">
+                      {clinicContact.clinic.addressLine1}
+                      <br />
+                      {clinicContact.clinic.addressLine2}
+                    </address>
+                  ) : (
+                    <PendingDetail />
+                  )}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-sm font-medium text-electric-cyan">Phone</dt>
+                <dd className="mt-1.5">
+                  {clinicContact.phone ? (
+                    <a
+                      href={`tel:${clinicContact.phone.tel}`}
+                      className="text-white hover:text-electric-cyan transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric-cyan"
+                    >
+                      {clinicContact.phone.display}
+                    </a>
+                  ) : (
+                    <PendingDetail />
+                  )}
+                </dd>
+              </div>
+            </dl>
           </div>
         </motion.div>
 
         {/* Medical disclaimer */}
-        <div className="mt-16 glass rounded-xl p-6 text-xs text-neural-silver/50 leading-relaxed">
+        <div
+          id="medical-disclaimer"
+          className="mt-16 glass rounded-xl p-6 text-sm text-neural-silver/75 leading-relaxed scroll-mt-24"
+        >
           <p>
-            <strong className="text-neural-silver/70">Important:</strong> FutureScan
-            provides AI-assisted screening services for informational purposes. Our
-            AI tools are TGA-registered Software as a Medical Device (SaMD) used as
-            clinical decision support. All findings are reviewed and reported by
-            FRANZCR-qualified radiologists. FutureScan does not replace your GP or
-            specialist. If you have acute symptoms, please contact emergency services
-            (000) or visit your nearest emergency department. Scans without a GP
-            referral may not be eligible for Medicare rebate.
+            <strong className="text-neural-silver-light font-semibold">
+              Important:
+            </strong>{" "}
+            FutureScan provides AI-assisted screening services for informational
+            purposes. Our AI tools are TGA-registered Software as a Medical Device
+            (SaMD) used as clinical decision support. All findings are reviewed and
+            reported by FRANZCR-qualified radiologists. FutureScan does not replace
+            your GP or specialist. If you have acute symptoms, please contact
+            emergency services (000) or visit your nearest emergency department.
+            Scans without a GP referral may not be eligible for Medicare rebate.
           </p>
         </div>
       </div>

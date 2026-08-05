@@ -1,18 +1,24 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Technology", href: "#technology" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Trust", href: "#trust" },
+  { label: "How It Works", hash: "#how-it-works" },
+  { label: "Technology", hash: "#technology" },
+  { label: "Pricing", hash: "#pricing" },
+  { label: "Trust", hash: "#trust" },
 ];
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  /* Section anchors only resolve on the home page; from anywhere else they
+     have to travel there first. */
+  const anchor = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -33,7 +39,7 @@ export function Navigation() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <div className="relative h-8 w-8 rounded-lg bg-gradient-to-br from-electric-cyan to-electric-cyan-dim flex items-center justify-center">
             <span className="text-deep-space font-bold text-sm font-[family-name:var(--font-space-grotesk)]">
               F
@@ -43,21 +49,21 @@ export function Navigation() {
           <span className="text-xl font-bold font-[family-name:var(--font-space-grotesk)] tracking-tight">
             Future<span className="text-electric-cyan">Scan</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.hash}
+              href={anchor(link.hash)}
               className="text-sm text-neural-silver hover:text-electric-cyan transition-colors duration-300"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#book"
+            href={anchor("#book")}
             className="relative inline-flex items-center gap-2 rounded-full bg-electric-cyan px-6 py-2.5 text-sm font-semibold text-deep-space transition-all hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:scale-105 active:scale-95"
           >
             See Your Future Health
@@ -100,8 +106,8 @@ export function Navigation() {
             <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
-                  key={link.href}
-                  href={link.href}
+                  key={link.hash}
+                  href={anchor(link.hash)}
                   onClick={() => setMobileOpen(false)}
                   className="text-lg text-neural-silver hover:text-electric-cyan transition-colors"
                 >
@@ -109,7 +115,7 @@ export function Navigation() {
                 </a>
               ))}
               <a
-                href="#book"
+                href={anchor("#book")}
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center rounded-full bg-electric-cyan px-6 py-3 text-sm font-semibold text-deep-space"
               >

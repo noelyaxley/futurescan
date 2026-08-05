@@ -98,7 +98,7 @@ export function HowItWorks() {
                 <div className="relative z-10">
                   {/* Number + Icon */}
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-5xl font-bold font-[family-name:var(--font-space-grotesk)] text-deep-space-lighter/80 group-hover:text-electric-cyan/20 transition-colors">
+                    <span className="text-5xl font-bold font-[family-name:var(--font-space-grotesk)] text-neural-silver/60 group-hover:text-electric-cyan/70 transition-colors">
                       {step.number}
                     </span>
                     <div className="text-electric-cyan">{step.icon}</div>

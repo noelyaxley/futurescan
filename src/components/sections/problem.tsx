@@ -45,7 +45,7 @@ function StatCard({
         {stat.value}
       </div>
       <p className="mt-3 text-base text-white font-medium">{stat.label}</p>
-      <p className="mt-1 text-sm text-neural-silver/60">{stat.detail}</p>
+      <p className="mt-1 text-sm text-neural-silver/80">{stat.detail}</p>
     </motion.div>
   );
 }
@@ -73,7 +73,7 @@ export function Problem() {
           <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold font-[family-name:var(--font-space-grotesk)] leading-tight">
             Healthcare shouldn&apos;t be
             <br />
-            <span className="text-neural-silver/40">a luxury.</span>
+            <span className="text-neural-silver/70">a luxury.</span>
           </h2>
           <p className="mt-6 text-lg text-neural-silver leading-relaxed">
             Millions of Australians delay or skip MRI scans because they

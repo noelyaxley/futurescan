@@ -129,7 +129,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neural-silver/60"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neural-silver/80"
         >
           <span className="flex items-center gap-1.5">
             <svg className="w-3.5 h-3.5 text-electric-cyan" fill="currentColor" viewBox="0 0 20 20">

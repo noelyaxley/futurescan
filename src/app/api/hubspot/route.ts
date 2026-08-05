@@ -20,8 +20,12 @@ export async function POST(req: NextRequest) {
     phone,
     scanType,
     concern,
+    company,
+    teamSize,
     preferredDate,
     heardAbout,
+    plan,
+    consent,
   } = body;
 
   if (!email || !firstName) {
@@ -38,13 +42,21 @@ export async function POST(req: NextRequest) {
       lastname: lastName || "",
       email,
       phone: phone || "",
-      // Custom properties — create these in HubSpot first
+      // Custom properties — create these in HubSpot first:
+      // scan_type, health_concerns, preferred_timeframe, how_did_you_hear,
+      // selected_plan, team_size, privacy_consent
       scan_type: scanType || "",
       health_concerns: concern || "",
       preferred_timeframe: preferredDate || "",
       how_did_you_hear: heardAbout || "",
       lifecyclestage: "lead",
       hs_lead_status: "NEW",
+      // Only sent when the visitor supplied them, so an account without these
+      // properties keeps working for the plain consumer enquiry.
+      ...(company ? { company } : {}),
+      ...(plan ? { selected_plan: plan } : {}),
+      ...(teamSize ? { team_size: teamSize } : {}),
+      ...(consent ? { privacy_consent: "true" } : {}),
     },
   };
 

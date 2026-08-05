@@ -87,7 +87,7 @@ export function ScanExperience() {
                 </div>
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-xs">
-                    <span className="text-neural-silver/60">Neural structures</span>
+                    <span className="text-neural-silver/80">Neural structures</span>
                     <span className="text-electric-cyan">Normal</span>
                   </div>
                   <div className="h-1 rounded-full bg-deep-space-lighter overflow-hidden">
@@ -100,7 +100,7 @@ export function ScanExperience() {
                     />
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-neural-silver/60">Tissue density</span>
+                    <span className="text-neural-silver/80">Tissue density</span>
                     <span className="text-electric-cyan">Analysing...</span>
                   </div>
                   <div className="h-1 rounded-full bg-deep-space-lighter overflow-hidden">

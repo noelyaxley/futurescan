@@ -2,8 +2,21 @@
 
 import { motion } from "framer-motion";
 
-const plans = [
+import { selectPlan, type PlanId } from "@/lib/plan";
+
+const plans: {
+  id: PlanId;
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: string;
+  featured: boolean;
+  savings?: string;
+}[] = [
   {
+    id: "single-scan",
     name: "Single Scan",
     price: "$299",
     period: "one-time",
@@ -19,6 +32,7 @@ const plans = [
     featured: false,
   },
   {
+    id: "membership",
     name: "Annual Membership",
     price: "$49",
     period: "/month",
@@ -36,6 +50,7 @@ const plans = [
     savings: "Save $110+ vs traditional",
   },
   {
+    id: "corporate",
     name: "Corporate Wellness",
     price: "Custom",
     period: "",
@@ -145,7 +160,8 @@ export function Pricing() {
 
               <a
                 href="#book"
-                className={`block text-center rounded-full py-3 px-6 text-sm font-semibold transition-all ${
+                onClick={() => selectPlan(plan.id)}
+                className={`block text-center rounded-full py-3 px-6 text-sm font-semibold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric-cyan ${
                   plan.featured
                     ? "bg-electric-cyan text-deep-space hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:scale-105"
                     : "border border-neural-silver/20 text-white hover:border-electric-cyan/40"
@@ -163,7 +179,7 @@ export function Pricing() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="mt-12 text-center text-sm text-neural-silver/50"
+          className="mt-12 text-center text-sm text-neural-silver/75"
         >
           All prices in AUD. Membership billed annually ($588/year). Cancel anytime.
           Pricing subject to change during pilot phase.
