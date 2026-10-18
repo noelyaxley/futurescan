@@ -16,23 +16,11 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "FutureScan | Affordable AI-Powered MRI Scans in Sydney",
+    default: "FutureScan | In development",
     template: "%s | FutureScan",
   },
   description:
-    "Get proactive MRI scans powered by AI diagnostics at a fraction of traditional costs. No referral needed. Results in 24 hours. Sydney's first AI-driven MRI clinic.",
-  keywords: [
-    "affordable MRI Australia",
-    "AI radiology report",
-    "private MRI scans Sydney",
-    "private MRI scans Melbourne",
-    "preventative health scan",
-    "full body MRI scan",
-    "AI MRI diagnostics",
-    "cheap MRI scan Sydney",
-    "proactive health screening",
-    "MRI subscription Australia",
-  ],
+    "FutureScan is in development. Services, clinical oversight, location, availability and pricing are not yet confirmed.",
   authors: [{ name: "FutureScan" }],
   creator: "FutureScan",
   metadataBase: new URL("https://futurescan.com.au"),
@@ -41,24 +29,15 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: "https://futurescan.com.au",
     siteName: "FutureScan",
-    title: "FutureScan | Affordable AI-Powered MRI Scans",
+    title: "FutureScan | In development",
     description:
-      "Proactive MRI scans powered by AI. Affordable. Fast. No referral needed. See your future health today.",
-    images: [
-      {
-        url: "/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "FutureScan - AI-Powered MRI Scans",
-      },
-    ],
+      "FutureScan is not yet open. Verified service and contact details will be published when ready.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "FutureScan | Affordable AI-Powered MRI Scans",
+    card: "summary",
+    title: "FutureScan | In development",
     description:
-      "Proactive MRI scans powered by AI. Affordable. Fast. No referral needed.",
-    images: ["/assets/og-image.png"],
+      "FutureScan is not yet open. Verified service and contact details will be published when ready.",
   },
   robots: {
     index: true,
@@ -88,31 +67,6 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <head>
-        {/* Google Analytics */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`,
-              }}
-            />
-          </>
-        )}
-        {/* HubSpot Tracking Code */}
-        {process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID && (
-          <script
-            id="hs-script-loader"
-            async
-            defer
-            src={`//js.hs-scripts.com/${process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID}.js`}
-          />
-        )}
-      </head>
       <body className="min-h-full flex flex-col bg-deep-space text-white">
         {children}
       </body>

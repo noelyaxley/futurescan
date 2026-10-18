@@ -1,37 +1,83 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
-  const token = process.env.HUBSPOT_ACCESS_TOKEN;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const scanTypes = new Set([
+  "full-body",
+  "brain",
+  "cardiac",
+  "spine",
+  "joint",
+  "abdominal",
+]);
+const teamSizes = new Set(["10-25", "26-100", "101-500", "500+"]);
+const plans = new Set(["single-scan", "membership", "corporate"]);
 
-  if (!token) {
-    console.error("HUBSPOT_ACCESS_TOKEN not configured");
+function text(value: unknown, maxLength: number) {
+  return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+}
+
+export async function POST(req: NextRequest) {
+  if (process.env.FUTURESCAN_ENQUIRIES_ENABLED !== "true") {
     return NextResponse.json(
-      { error: "Server configuration error" },
-      { status: 500 }
+      { error: "Online enquiries are not currently available" },
+      { status: 503 }
     );
   }
 
-  const body = await req.json();
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
 
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    scanType,
-    concern,
-    company,
-    teamSize,
-    preferredDate,
-    heardAbout,
-    plan,
-    consent,
-  } = body;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
 
-  if (!email || !firstName) {
+  const body = raw as Record<string, unknown>;
+  const firstName = text(body.firstName, 80);
+  const lastName = text(body.lastName, 80);
+  const email = text(body.email, 254).toLowerCase();
+  const phone = text(body.phone, 40);
+  const scanType = text(body.scanType, 40);
+  const concern = text(body.concern, 2000);
+  const company = text(body.company, 160);
+  const teamSize = text(body.teamSize, 40);
+  const preferredDate = text(body.preferredDate, 40);
+  const heardAbout = text(body.heardAbout, 80);
+  const plan = text(body.plan, 40);
+  const consent = body.consent === true;
+
+  if (!firstName || !emailPattern.test(email) || !consent) {
     return NextResponse.json(
-      { error: "Name and email are required" },
-      { status: 400 }
+      { error: "Name, a valid email and consent are required" },
+      { status: 422 }
+    );
+  }
+
+  if (plan && !plans.has(plan)) {
+    return NextResponse.json({ error: "Invalid plan" }, { status: 422 });
+  }
+
+  const isBusiness = plan === "corporate";
+  if (isBusiness) {
+    if (!company || !teamSizes.has(teamSize)) {
+      return NextResponse.json(
+        { error: "Company and team size are required" },
+        { status: 422 }
+      );
+    }
+  } else if (!scanTypes.has(scanType)) {
+    return NextResponse.json({ error: "Scan type is required" }, { status: 422 });
+  }
+
+  const token = process.env.HUBSPOT_ACCESS_TOKEN;
+  if (!token) {
+    console.error("HUBSPOT_ACCESS_TOKEN not configured");
+    return NextResponse.json(
+      { error: "Enquiries are temporarily unavailable" },
+      { status: 503 }
     );
   }
 

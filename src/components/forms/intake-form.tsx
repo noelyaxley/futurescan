@@ -149,9 +149,21 @@ export function IntakeForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Submission failed");
+      if (!res.ok) {
+        if (res.status === 503) {
+          throw new Error("unavailable");
+        }
+        throw new Error("failed");
+      }
       setSubmitted(true);
-    } catch {
+    } catch (submissionError) {
+      if (
+        submissionError instanceof Error &&
+        submissionError.message === "unavailable"
+      ) {
+        setError("Online enquiries are temporarily unavailable. Please try again later.");
+        return;
+      }
       setError(
         clinicContact.phone
           ? `We couldn't send that. Please try again, or call us on ${clinicContact.phone.display}.`
