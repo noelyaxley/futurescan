@@ -91,8 +91,10 @@ export function IntakeForm() {
   /* The plan chosen in the pricing section arrives either on the URL (a shared
      or reloaded link) or as an event from the CTA that was just clicked. */
   useEffect(() => {
-    const fromUrl = planFromLocation();
-    if (fromUrl) setData((prev) => ({ ...prev, plan: fromUrl }));
+    const initialPlanFrame = window.requestAnimationFrame(() => {
+      const fromUrl = planFromLocation();
+      if (fromUrl) setData((prev) => ({ ...prev, plan: fromUrl }));
+    });
 
     const onPlan = (event: Event) => {
       const chosen = (event as CustomEvent<PlanId>).detail;
@@ -100,7 +102,10 @@ export function IntakeForm() {
       setStep(0);
     };
     window.addEventListener(PLAN_EVENT, onPlan);
-    return () => window.removeEventListener(PLAN_EVENT, onPlan);
+    return () => {
+      window.cancelAnimationFrame(initialPlanFrame);
+      window.removeEventListener(PLAN_EVENT, onPlan);
+    };
   }, []);
 
   const update = (fields: Partial<FormData>) =>
